@@ -1,0 +1,34 @@
+{% extends "nav.html" %}
+{% block content %}
+
+{% load static %}
+<div class="container-fluid gtco-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="col-lg-6" id="contact">
+                        <h4> Sign Up! </h4>
+                        <input type="text" class="form-control mt-3" name="fname" placeholder="First Name *" required>
+                        <input type="text" class="form-control mt-3"  name="lname" placeholder="Last Name *" required>
+                        <input type="text" class="form-control mt-3" name="uname" placeholder="User Name *" required>
+                        <input type="email" class="form-control mt-3" name="email" placeholder="Email *" required>
+                        <input type="password" class="form-control mt-3" name="pwd" placeholder="Password *" required>
+                        <input type="password" class="form-control mt-3" name="cpwd" placeholder="Confirm Password *" required>
+                        <button class="btn btn-yellow mt-3" type="submit">SignUp</button>
+                    </div>
+                </form>                
+            </div>
+            <div class="col-md-6">
+                <div class="card"><img class="card-img-top img-fluid" src="{% static 'images/banner-img.png' %}" alt=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for i in messages %}
+<script>alert("{{i}}")</script>
+{% endfor %}
+
+{% endblock %}

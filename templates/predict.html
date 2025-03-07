@@ -1,0 +1,50 @@
+{% extends "nav.html" %}
+{% block content %}
+
+{% load static %}
+<div class="container-fluid gtco-banner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="col-lg-6" id="contact">
+                        <h4>Your Prediction Result</h4>
+                        
+                        <input style="margin-top: 5px; width: 300px;" name="age" type="number" placeholder="Age: {{age}}" min="18" max="100" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="gender" type="text" placeholder="Gender: {{gender}}" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="bmi" type="number" step="0.1" placeholder="BMI: {{bmi}}" min="15" max="40" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="systolic_bp" type="number" placeholder="Systolic BP: {{systolic_bp}}" min="90" max="180" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="diastolic_bp" type="number" placeholder="Diastolic BP: {{diastolic_bp}}" min="60" max="120" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="fasting_blood_sugar" type="number" placeholder="Fasting Blood Sugar: {{fasting_blood_sugar}}" min="70" max="200" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="hba1c" type="number" step="0.1" placeholder="HbA1c: {{hba1c}}" min="4" max="10" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="serum_creatinine" type="number" step="0.1" placeholder="Serum Creatinine: {{serum_creatinine}}" min="0.5" max="5.0" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="gfr" type="number" placeholder="GFR: {{gfr}}" min="15" max="120" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="smoking" type="text" placeholder="Smoking: {{smoking}}" readonly>
+                        <input style="margin-top: 15px; width: 300px;" name="prediction" type="text" placeholder="Prediction: {{ prediction }}" readonly>
+                        {% if ckd_stage %}
+                        <input style="margin-top: 15px; width: 300px;" name="ckd_stage" type="text" placeholder="CKD Stage: {{ ckd_stage }}" readonly>
+                        
+                        <div>
+                            <p>For hospital recommendation</p>
+                            <a href="{% url 'recommend_hospital' %}">
+                            <button type="button">Click here</button>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                                
+            </div>
+            <div class="col-md-6">
+                <div class="card"><img class="card-img-top img-fluid" src="{% static 'images/banner-img.png' %}" alt=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for i in messages %}
+<script>alert("{{i}}")</script>
+{% endfor %}
+
+{% endblock %}
